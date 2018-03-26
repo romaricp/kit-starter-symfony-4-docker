@@ -1,3 +1,7 @@
+###> local ###
+.idea
+###< local ###
+
 ###> docker ###
 .docker/data/*
 ###< docker ###
