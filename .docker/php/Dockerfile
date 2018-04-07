@@ -6,6 +6,8 @@ RUN apt-get update \
     build-essential locales acl mailutils wget nodejs zip unzip \
     gnupg gnupg1 gnupg2
 
+RUN docker-php-ext-install pdo pdo_mysql
+
 COPY php.ini /etc/php/7.2.3/php.ini
 COPY php-fpm-pool.conf /etc/php/7.2.3/pool.d/www.conf
 
