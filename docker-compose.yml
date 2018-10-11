@@ -13,6 +13,7 @@ services:
 
     mysql:
         image: mysql
+        command: "--default-authentication-plugin=mysql_native_password"
         container_name: sf4_mysql
         volumes:
             - .docker/data/db:/var/lib/mysql
