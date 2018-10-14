@@ -1,6 +1,5 @@
-FROM php:7.2.3-fpm
+FROM php:7.2.10-fpm
 
-##<romaricp>##
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
     build-essential locales acl mailutils wget nodejs zip unzip \
@@ -9,8 +8,8 @@ RUN apt-get update \
 
 RUN docker-php-ext-install pdo pdo_mysql zip
 
-COPY php.ini /etc/php/7.2.3/php.ini
-COPY php-fpm-pool.conf /etc/php/7.2.3/pool.d/www.conf
+COPY php.ini /usr/local/etc/php/php.ini
+COPY php-fpm-pool.conf 	/usr/local/etc/php/pool.d/www.conf
 
 RUN curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
 	mv composer.phar /usr/local/bin/composer
