@@ -1,4 +1,4 @@
-FROM php:7.2.9-fpm
+FROM php:7.2.10-fpm
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
@@ -37,11 +37,6 @@ RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     locale-gen
 
 RUN echo "dev ALL=(ALL) ALL" > /etc/sudoers
-
-#RUN fallocate -l 2G /swapfile
-#RUN chmod 600 /swapfile
-#RUN mkswap /swapfile
-#RUN swapon /swapfile
 
 WORKDIR /home/wwwroot/
 ##</romaricp>##
