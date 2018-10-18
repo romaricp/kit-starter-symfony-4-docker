@@ -1,10 +1,11 @@
-FROM php:7.2.10-fpm
+FROM php:7.2.9-fpm
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends vim curl debconf subversion git apt-transport-https apt-utils \
     build-essential locales acl mailutils wget nodejs zip unzip \
     gnupg gnupg1 gnupg2 \
-    zlib1g-dev
+    zlib1g-dev \
+    sudo
 
 RUN docker-php-ext-install pdo pdo_mysql zip
 
@@ -28,11 +29,19 @@ RUN	echo "deb https://deb.nodesource.com/node_6.x jessie main" >> /etc/apt/sourc
 
 RUN groupadd dev -g 999
 RUN useradd dev -g dev -d /home/dev -m
+RUN passwd -d dev
 
 RUN rm -rf /var/lib/apt/lists/*
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && \
     echo "fr_FR.UTF-8 UTF-8" >> /etc/locale.gen && \
     locale-gen
+
+RUN echo "dev ALL=(ALL) ALL" > /etc/sudoers
+
+#RUN fallocate -l 2G /swapfile
+#RUN chmod 600 /swapfile
+#RUN mkswap /swapfile
+#RUN swapon /swapfile
 
 WORKDIR /home/wwwroot/
 ##</romaricp>##

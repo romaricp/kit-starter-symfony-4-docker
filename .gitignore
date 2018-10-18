@@ -5,6 +5,7 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
+###> romaricp ###
 .idea
-.docker/data
-.docker/data/*
+.docker/data/
+###< romaricp ###
