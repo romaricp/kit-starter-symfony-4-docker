@@ -41,5 +41,10 @@ RUN echo "dev ALL=(ALL) ALL" > /etc/sudoers
 WORKDIR /home/wwwroot/
 ##</romaricp>##
 
+# entrypoint
+COPY docker-php-entrypoint /usr/local/bin/
+RUN chmod 755 /usr/local/bin/docker-php-entrypoint
+
+
 EXPOSE 9000
 CMD ["php-fpm"]

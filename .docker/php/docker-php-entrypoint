@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Installation of Symfony4 with composer ! ----------------------------------
+	cd /home/wwwroot/sf4 && composer create-project symfony/skeleton my-temp-folder
+
+# Get the project to the root path. ! ----------------------------------
+    cp -Rf /home/wwwroot/sf4/my-temp-folder/.  /home/wwwroot/sf4
+    rm -Rf /home/wwwroot/sf4/my-temp-folder
+
+
+# Permissions for /var/cache
+	cd /home/wwwroot/sf4 && chmod 777 -R /home/wwwroot/sf4/var/*	
+	
+# APACHE -----------------------------------
+	# first arg is `-f` or `--some-option`
+	if [ "${1#-}" != "$1" ]; then
+		set -- apache2-foreground "$@"
+	fi
+	exec "$@"
